@@ -268,13 +268,11 @@ class Esmf(MakefilePackage):
         if '+xerces' in spec:
             # ESMF provides the ability to read Attribute data in
             # XML file format via the XERCES C++ library.
-
-            # ESMF_XERCES_LIBS will be set to "-lxerces-c".
-            os.environ['ESMF_XERCES'] = 'standard'
+            os.environ['ESMF_XERCES'] = 'custom'
 
             # Following are needed to have them in ESMF_F90LINKPATHS
-            ESMF_XERCES_INCLUDE = spec['xerces'].prefix.include
-            ESMF_XERCES_LIBPATH = spec['xerces'].prefix.lib
+            ESMF_XERCES_INCLUDE = spec['xerces-c'].prefix.include
+            ESMF_XERCES_LIBPATH = spec['xerces-c'].prefix.lib
             ESMF_XERCES_LIBS = '-lxerces-c'
 
     def check(self):

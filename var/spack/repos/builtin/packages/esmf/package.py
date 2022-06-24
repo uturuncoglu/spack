@@ -243,14 +243,7 @@ class Esmf(MakefilePackage):
         if '+pnetcdf' in spec:
             # ESMF provides the ability to write Mesh weights
             # using Parallel-NetCDF.
-
-            # When defined, enables the use of Parallel-NetCDF.
-            # ESMF_PNETCDF_LIBS will be set to "-lpnetcdf".
-            os.environ['ESMF_PNETCDF'] = 'standard'
-
-            # FIXME: determine whether or not we need to set these.
-            # ESMF_PNETCDF_INCLUDE
-            # ESMF_PNETCDF_LIBPATH
+            os.environ['ESMF_PNETCDF'] = 'pnetcdf-config'
 
         ##############
         # ParallelIO #
@@ -279,9 +272,10 @@ class Esmf(MakefilePackage):
             # ESMF_XERCES_LIBS will be set to "-lxerces-c".
             os.environ['ESMF_XERCES'] = 'standard'
 
-            # FIXME: determine if the following are needed
-            # ESMF_XERCES_INCLUDE
-            # ESMF_XERCES_LIBPATH
+            # Following are needed to have them in ESMF_F90LINKPATHS
+            ESMF_XERCES_INCLUDE = spec['xerces'].prefix.include
+            ESMF_XERCES_LIBPATH = spec['xerces'].prefix.lib
+            ESMF_XERCES_LIBS = '-lxerces-c'
 
     def check(self):
         make('check', parallel=False)

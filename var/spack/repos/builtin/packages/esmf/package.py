@@ -32,7 +32,7 @@ class Esmf(MakefilePackage):
     variant('external-lapack', default=False, description='Build with external LAPACK support')
     variant('netcdf',  default=True,  description='Build with NetCDF support')
     variant('pnetcdf', default=True,  description='Build with pNetCDF support')
-    variant('xerces',  default=True,  description='Build with Xerces support')
+    variant('xerces',  default=False,  description='Build with Xerces support')
     variant('pio',     default=True,  description='Enable ParallelIO support')
     variant('debug',   default=False, description='Make a debuggable version of the library')
 
@@ -268,12 +268,13 @@ class Esmf(MakefilePackage):
         if '+xerces' in spec:
             # ESMF provides the ability to read Attribute data in
             # XML file format via the XERCES C++ library.
-            os.environ['ESMF_XERCES'] = 'custom'
 
-            # Following are needed to have them in ESMF_F90LINKPATHS
-            ESMF_XERCES_INCLUDE = spec['xerces-c'].prefix.include
-            ESMF_XERCES_LIBPATH = spec['xerces-c'].prefix.lib
-            ESMF_XERCES_LIBS = '-lxerces-c'
+            # ESMF_XERCES_LIBS will be set to "-lxerces-c".
+            os.environ['ESMF_XERCES'] = 'standard'
+
+            # FIXME: determine if the following are needed
+            # ESMF_XERCES_INCLUDE
+            # ESMF_XERCES_LIBPATH
 
     def check(self):
         make('check', parallel=False)

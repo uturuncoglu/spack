@@ -16,6 +16,7 @@ class Parallelio(CMakePackage):
 
     maintainers = ['tkameyama']
 
+    version('2_5_7', sha256='af8af04e41af17f98f2c90b996ef0d8bcd980377e0b35e57b38938c7fdc87cbd')
     version('2_5_4', sha256='e51dc71683da808a714deddc1a80c2650ce847110383e42f1710f3ba567e7a65')
     version('2_5_2', sha256='935bc120ef3bf4fe09fb8bfdf788d05fb201a125d7346bf6b09e27ac3b5f345c')
 
@@ -25,9 +26,9 @@ class Parallelio(CMakePackage):
     patch('remove_redefinition_of_mpi_offset.patch', when='@:2.5.6')
 
     depends_on('mpi')
-    depends_on('netcdf-c +mpi', type='link')
-    depends_on('netcdf-fortran', type='link')
-    depends_on('parallel-netcdf', type='link', when='+pnetcdf')
+    depends_on('netcdf-c +mpi')
+    depends_on('netcdf-fortran')
+    depends_on('parallel-netcdf', when='+pnetcdf')
 
     resource(name='CMake_Fortran_utils',
              git='https://github.com/CESM-Development/CMake_Fortran_utils.git',

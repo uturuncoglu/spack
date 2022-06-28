@@ -11,8 +11,10 @@ class Parallelio(CMakePackage):
     Fortran libraries for applications that need to do netCDF I/O from
     large numbers of processors on a HPC system."""
 
-    homepage = "https://ncar.github.io/ParallelIO/"
-    url      = "https://github.com/NCAR/ParallelIO/archive/pio2_5_4.tar.gz"
+    homepage   = "https://ncar.github.io/ParallelIO/"
+    url        = "https://github.com/NCAR/ParallelIO/archive/pio2_5_4.tar.gz"
+    list_url   = "https://ncar.github.io/ParallelIO/"
+    list_depth = 2
 
     maintainers = ['tkameyama']
 

@@ -24,7 +24,6 @@ class Parallelio(CMakePackage):
 
     variant('pnetcdf', default=False, description='enable pnetcdf')
     variant('timing', default=False, description='enable GPTL timing')
-    variant('shared', default=False, description='enable shared library')
 
     patch('remove_redefinition_of_mpi_offset.patch', when='@:2.5.6')
 
@@ -61,10 +60,6 @@ class Parallelio(CMakePackage):
         args.extend([
             define_from_variant('PIO_ENABLE_TIMING', 'timing'),
         ])
-        if spec.satisfies('+shared'):
-            cmake_args.extend([
-                '-DBUILD_SHARED_LIBS:BOOL=ON'
-            ])
         # Compatibility flags for gfortran
         fflags = []
         if self.compiler.name in ['gcc', 'clang', 'apple-clang']:

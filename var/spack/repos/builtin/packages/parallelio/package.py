@@ -28,9 +28,9 @@ class Parallelio(CMakePackage):
     patch('remove_redefinition_of_mpi_offset.patch', when='@:2.5.6')
 
     depends_on('mpi')
-    depends_on('netcdf-c +mpi')
-    depends_on('netcdf-fortran')
-    depends_on('parallel-netcdf', when='+pnetcdf')
+    depends_on('netcdf-c +mpi', type='link')
+    depends_on('netcdf-fortran', type='link')
+    depends_on('parallel-netcdf', type='link', when='+pnetcdf')
 
     resource(name='CMake_Fortran_utils',
              git='https://github.com/CESM-Development/CMake_Fortran_utils.git',

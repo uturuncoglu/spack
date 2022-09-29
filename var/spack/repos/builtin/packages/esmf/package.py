@@ -23,6 +23,7 @@ class Esmf(MakefilePackage):
 
     # Develop is a special name for spack and is always considered the newest version
     version("develop", branch="develop")
+    version("8.4.0b15", commit="1fd7513367")
     version(
         "8.3.0",
         sha256="0ff43ede83d1ac6beabd3d5e2a646f7574174b28a48d1b9f2c318a054ba268fd",
